@@ -3,11 +3,13 @@ package com.example.calculatorapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -193,6 +195,19 @@ public class BasicActivity extends AppCompatActivity {
 
     public void equalClick(View view) throws ScriptException {
         if(actualValue.length() == 0) return;
+
+        for(int i = actualValue.length() - 1; i >= 0; i--) {
+            if(actualValue.charAt(i) == '0' && actualValue.charAt(i - 1) == '/') {
+                Context context = getApplicationContext();
+                CharSequence text = "You cannot divide by 0";
+                int duration = Toast.LENGTH_LONG;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                return;
+            }
+        }
+
         if(        actualValue.charAt(actualValue.length() - 1) == '.'
                 || actualValue.charAt(actualValue.length() - 1) == '+'
                 || actualValue.charAt(actualValue.length() - 1) == '-'
@@ -200,14 +215,26 @@ public class BasicActivity extends AppCompatActivity {
                 || actualValue.charAt(actualValue.length() - 1) == '/') {
             actualValue = actualValue.substring(0, actualValue.length() - 1);
         }
-            setHistoryValue(actualValue);
+        setHistoryValue(actualValue);
 
-            ScriptEngineManager manager = new ScriptEngineManager();
-            ScriptEngine engine = manager.getEngineByName("rhino");
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("rhino");
 
-            Object result = engine.eval(actualValue);
-            actualValue = result.toString();
-            setActualValue(actualValue);
+        Object result = engine.eval(actualValue);
+        actualValue = result.toString();
+
+        int helpValue = 0;
+        boolean helpBool = false;
+        for(int i = 0; i < actualValue.length() - 1; i++) {
+            if(helpBool == true) helpValue++;
+            if(actualValue.charAt(i) == '.') helpBool = true;
+        }
+
+        System.out.println(helpValue);
+        if(helpValue > 6) actualValue = actualValue.substring(0, actualValue.length() - 2);
+
+        setActualValue(actualValue);
+
     }
 
     public void additionClick(View view) {
