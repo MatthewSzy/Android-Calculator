@@ -3,11 +3,13 @@ package com.example.calculatorapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -497,7 +499,6 @@ public class AdvancedActivity extends AppCompatActivity {
             else {
                 int helpValue = 0;
                 specialMode = true;
-                System.out.println(actualPrintValue);
                 for(int i = actualPrintValue.length() - 1; i > 0; i--) {
                     if(        actualPrintValue.charAt(i) == '+'
                             || actualPrintValue.charAt(i) == '-'
@@ -617,18 +618,24 @@ public class AdvancedActivity extends AppCompatActivity {
     }
 
     public void subtractionClick(View view) {
-        if(        actualValue.charAt(actualValue.length() - 1) != '-'
-                && actualValue.charAt(actualValue.length() - 1) != '+'
-                && actualValue.charAt(actualValue.length() - 1) != '*'
-                && actualValue.charAt(actualValue.length() - 1) != '/') {
+        if(actualValue.length() != 0) {
+            if(        actualValue.charAt(actualValue.length() - 1) != '-'
+                    && actualValue.charAt(actualValue.length() - 1) != '+'
+                    && actualValue.charAt(actualValue.length() - 1) != '*'
+                    && actualValue.charAt(actualValue.length() - 1) != '/') {
+                actualValue += "-";
+                actualPrintValue += "-";
+            }
+            else {
+                actualValue = actualValue.substring(0, actualValue.length() - 1) + "-";
+                actualPrintValue = actualPrintValue.substring(0, actualPrintValue.length() - 1) + "-";
+            }
+        }
+        else {
             actualValue += "-";
             actualPrintValue += "-";
         }
-        else {
-            actualValue = actualValue.substring(0, actualValue.length() - 1) + "-";
-            actualPrintValue = actualPrintValue.substring(0, actualPrintValue.length() - 1) + "-";
-        }
-        setActualValue(actualValue);
+        setActualValue(actualPrintValue);
     }
 
     public void zeroClick(View view) {
@@ -666,6 +673,59 @@ public class AdvancedActivity extends AppCompatActivity {
 
     public void equalClick(View view) throws ScriptException {
         if(actualValue.length() == 0) return;
+
+        for(int i = actualValue.length() - 1; i >= 0; i--) {
+            if(actualValue.charAt(i) == '0' && actualValue.charAt(i - 1) == '/') {
+                Context context = getApplicationContext();
+                CharSequence text = "You cannot divide by 0";
+                int duration = Toast.LENGTH_LONG;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+                return;
+            }
+            if(actualValue.charAt(i) == '-' && i != 0) {
+                if(actualValue.charAt(i) == '-' && actualValue.charAt(i - 1) == '('
+                        && actualValue.charAt(i - 2) == 't'
+                        && actualValue.charAt(i - 3) == 'r'
+                        && actualValue.charAt(i - 4) == 'q'
+                        && actualValue.charAt(i - 5) == 's') {
+                    Context context = getApplicationContext();
+                    CharSequence text = "You cannot square a negative number";
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    return;
+                }
+                if(actualValue.charAt(i) == '-' && actualValue.charAt(i - 1) == '('
+                        && actualValue.charAt(i - 2) == 'g'
+                        && actualValue.charAt(i - 3) == 'o'
+                        && actualValue.charAt(i - 4) == 'l') {
+                    Context context = getApplicationContext();
+                    CharSequence text = "You cannot use logarithm on negative numbers";
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    return;
+                }
+                if(actualValue.charAt(i) == '-' && actualValue.charAt(i - 1) == '('
+                        && actualValue.charAt(i - 2) == 'n'
+                        && actualValue.charAt(i - 3) == 'l') {
+                    Context context = getApplicationContext();
+                    CharSequence text = "You cannot use logarithm on negative numbers";
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    return;
+                }
+            }
+        }
+
+
+        System.out.println("4");
         if(        actualValue.charAt(actualValue.length() - 1) == '.'
                 || actualValue.charAt(actualValue.length() - 1) == '+'
                 || actualValue.charAt(actualValue.length() - 1) == '-'
@@ -680,6 +740,17 @@ public class AdvancedActivity extends AppCompatActivity {
 
         Object result = engine.eval(actualValue);
         actualValue = result.toString();
+
+        int helpValue = 0;
+        boolean helpBool = false;
+        for(int i = 0; i < actualValue.length() - 1; i++) {
+            if(helpBool == true) helpValue++;
+            if(actualValue.charAt(i) == '.') helpBool = true;
+        }
+
+        System.out.println(helpValue);
+        if(helpValue > 6) actualValue = actualValue.substring(0, actualValue.length() - 2);
+
         actualPrintValue = actualValue;
         setActualValue(actualPrintValue);
     }
