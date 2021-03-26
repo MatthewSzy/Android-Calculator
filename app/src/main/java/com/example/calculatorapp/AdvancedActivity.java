@@ -85,6 +85,8 @@ public class AdvancedActivity extends AppCompatActivity {
             setHistoryValue(actualValue);
         }
         else {
+            specialMode = false;
+            powType = false;
             actualValue = "";
             actualPrintValue = "";
             setActualValue(actualPrintValue);
@@ -105,6 +107,7 @@ public class AdvancedActivity extends AppCompatActivity {
     }
 
     public void sinClick(View view) {
+        boolean symbol = false;
         if(specialMode == false) {
             if(actualValue.length() == 0) {
                 specialMode = true;
@@ -129,12 +132,19 @@ public class AdvancedActivity extends AppCompatActivity {
                             || actualPrintValue.charAt(i) == '*'
                             || actualPrintValue.charAt(i) == '/') {
                         helpValue = i;
+                        symbol = true;
                         break;
                     }
                 }
                 String helpString = "";
-                helpString = actualPrintValue.substring(helpValue + 1);
-                actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "sin(" + helpString;
+                if(symbol) {
+                    helpString = actualPrintValue.substring(helpValue + 1);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "sin(" + helpString;
+                }
+                else {
+                    helpString = actualPrintValue.substring(helpValue);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue) + "sin(" + helpString;
+                }
                 setActualValue(actualPrintValue);
                 for(int i = actualValue.length() - 1; i > 0; i--) {
                     if(        actualValue.charAt(i) == '+'
@@ -142,11 +152,18 @@ public class AdvancedActivity extends AppCompatActivity {
                             || actualValue.charAt(i) == '*'
                             || actualValue.charAt(i) == '/') {
                         helpValue = i;
+                        symbol = true;
                         break;
                     }
                 }
-                helpString = actualValue.substring(helpValue + 1);
-                actualValue = actualValue.substring(0, helpValue + 1) + "Math.sin(" + helpString;
+                if(symbol) {
+                    helpString = actualValue.substring(helpValue + 1);
+                    actualValue = actualValue.substring(0, helpValue + 1) + "Math.sin(" + helpString;
+                }
+                else {
+                    helpString = actualValue.substring(helpValue);
+                    actualValue = actualValue.substring(0, helpValue) + "Math.sin(" + helpString;
+                }
             }
         }
         else {
@@ -158,6 +175,7 @@ public class AdvancedActivity extends AppCompatActivity {
     }
 
     public void cosClick(View view) {
+        boolean symbol = false;
         if(specialMode == false) {
             if(actualValue.length() == 0) {
                 specialMode = true;
@@ -182,12 +200,19 @@ public class AdvancedActivity extends AppCompatActivity {
                             || actualPrintValue.charAt(i) == '*'
                             || actualPrintValue.charAt(i) == '/') {
                         helpValue = i;
+                        symbol = true;
                         break;
                     }
                 }
                 String helpString = "";
-                helpString = actualPrintValue.substring(helpValue + 1);
-                actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "cos(" + helpString;
+                if(symbol) {
+                    helpString = actualPrintValue.substring(helpValue + 1);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "cos(" + helpString;
+                }
+                else {
+                    helpString = actualPrintValue.substring(helpValue);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue) + "cos(" + helpString;
+                }
                 setActualValue(actualPrintValue);
                 for(int i = actualValue.length() - 1; i > 0; i--) {
                     if(        actualValue.charAt(i) == '+'
@@ -195,11 +220,18 @@ public class AdvancedActivity extends AppCompatActivity {
                             || actualValue.charAt(i) == '*'
                             || actualValue.charAt(i) == '/') {
                         helpValue = i;
+                        symbol = true;
                         break;
                     }
                 }
-                helpString = actualValue.substring(helpValue + 1);
-                actualValue = actualValue.substring(0, helpValue + 1) + "Math.cos(" + helpString;
+                if(symbol) {
+                    helpString = actualValue.substring(helpValue + 1);
+                    actualValue = actualValue.substring(0, helpValue + 1) + "Math.cos(" + helpString;
+                }
+                else {
+                    helpString = actualValue.substring(helpValue);
+                    actualValue = actualValue.substring(0, helpValue) + "Math.cos(" + helpString;
+                }
             }
         }
         else {
@@ -211,6 +243,7 @@ public class AdvancedActivity extends AppCompatActivity {
     }
 
     public void tanClick(View view) {
+        boolean symbol = false;
         if(specialMode == false) {
             if(actualValue.length() == 0) {
                 specialMode = true;
@@ -235,12 +268,19 @@ public class AdvancedActivity extends AppCompatActivity {
                             || actualPrintValue.charAt(i) == '*'
                             || actualPrintValue.charAt(i) == '/') {
                         helpValue = i;
+                        symbol = true;
                         break;
                     }
                 }
                 String helpString = "";
-                helpString = actualPrintValue.substring(helpValue + 1);
-                actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "tan(" + helpString;
+                if(symbol) {
+                    helpString = actualPrintValue.substring(helpValue + 1);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "tan(" + helpString;
+                }
+                else {
+                    helpString = actualPrintValue.substring(helpValue);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue) + "tan(" + helpString;
+                }
                 setActualValue(actualPrintValue);
                 for(int i = actualValue.length() - 1; i > 0; i--) {
                     if(        actualValue.charAt(i) == '+'
@@ -248,11 +288,18 @@ public class AdvancedActivity extends AppCompatActivity {
                             || actualValue.charAt(i) == '*'
                             || actualValue.charAt(i) == '/') {
                         helpValue = i;
+                        symbol = true;
                         break;
                     }
                 }
-                helpString = actualValue.substring(helpValue + 1);
-                actualValue = actualValue.substring(0, helpValue + 1) + "Math.tan(" + helpString;
+                if(symbol) {
+                    helpString = actualValue.substring(helpValue + 1);
+                    actualValue = actualValue.substring(0, helpValue + 1) + "Math.tan(" + helpString;
+                }
+                else {
+                    helpString = actualValue.substring(helpValue);
+                    actualValue = actualValue.substring(0, helpValue) + "Math.tan(" + helpString;
+                }
             }
         }
         else {
@@ -264,6 +311,7 @@ public class AdvancedActivity extends AppCompatActivity {
     }
 
     public void lnClick(View view) {
+        boolean symbol = false;
         if(specialMode == false) {
             if(actualValue.length() == 0) {
                 specialMode = true;
@@ -288,12 +336,19 @@ public class AdvancedActivity extends AppCompatActivity {
                             || actualPrintValue.charAt(i) == '*'
                             || actualPrintValue.charAt(i) == '/') {
                         helpValue = i;
+                        symbol = true;
                         break;
                     }
                 }
                 String helpString = "";
-                helpString = actualPrintValue.substring(helpValue + 1);
-                actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "ln(" + helpString;
+                if(symbol) {
+                    helpString = actualPrintValue.substring(helpValue + 1);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "ln(" + helpString;
+                }
+                else {
+                    helpString = actualPrintValue.substring(helpValue);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue) + "ln(" + helpString;
+                }
                 setActualValue(actualPrintValue);
                 for(int i = actualValue.length() - 1; i > 0; i--) {
                     if(        actualValue.charAt(i) == '+'
@@ -301,11 +356,18 @@ public class AdvancedActivity extends AppCompatActivity {
                             || actualValue.charAt(i) == '*'
                             || actualValue.charAt(i) == '/') {
                         helpValue = i;
+                        symbol = true;
                         break;
                     }
                 }
-                helpString = actualValue.substring(helpValue + 1);
-                actualValue = actualValue.substring(0, helpValue + 1) + "Math.log10(" + helpString;
+                if(symbol) {
+                    helpString = actualValue.substring(helpValue + 1);
+                    actualValue = actualValue.substring(0, helpValue + 1) + "Math.log10(" + helpString;
+                }
+                else {
+                    helpString = actualValue.substring(helpValue);
+                    actualValue = actualValue.substring(0, helpValue) + "Math.log10(" + helpString;
+                }
             }
         }
         else {
@@ -317,6 +379,7 @@ public class AdvancedActivity extends AppCompatActivity {
     }
 
     public void sqrtClick(View view) {
+        boolean symbol = false;
         if(specialMode == false) {
             if(actualValue.length() == 0) {
                 specialMode = true;
@@ -335,30 +398,44 @@ public class AdvancedActivity extends AppCompatActivity {
                 int helpValue = 0;
                 specialMode = true;
                 System.out.println(actualPrintValue);
-                for(int i = actualPrintValue.length() - 1; i > 0; i--) {
+                for(int i = actualPrintValue.length() - 1; i >= 0; i--) {
                     if(        actualPrintValue.charAt(i) == '+'
                             || actualPrintValue.charAt(i) == '-'
                             || actualPrintValue.charAt(i) == '*'
                             || actualPrintValue.charAt(i) == '/') {
                         helpValue = i;
+                        symbol = true;
                         break;
                     }
                 }
                 String helpString = "";
-                helpString = actualPrintValue.substring(helpValue + 1);
-                actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "sqrt(" + helpString;
+                if(symbol) {
+                    helpString = actualPrintValue.substring(helpValue + 1);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "sqrt(" + helpString;
+                }
+                else {
+                    helpString = actualPrintValue.substring(helpValue);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue) + "sqrt(" + helpString;
+                }
                 setActualValue(actualPrintValue);
-                for(int i = actualValue.length() - 1; i > 0; i--) {
+                for(int i = actualValue.length() - 1; i >= 0; i--) {
                     if(        actualValue.charAt(i) == '+'
                             || actualValue.charAt(i) == '-'
                             || actualValue.charAt(i) == '*'
                             || actualValue.charAt(i) == '/') {
                         helpValue = i;
+                        symbol = true;
                         break;
                     }
                 }
-                helpString = actualValue.substring(helpValue + 1);
-                actualValue = actualValue.substring(0, helpValue + 1) + "Math.sqrt(" + helpString;
+                if(symbol) {
+                    helpString = actualValue.substring(helpValue + 1);
+                    actualValue = actualValue.substring(0, helpValue + 1) + "Math.sqrt(" + helpString;
+                }
+                else {
+                    helpString = actualValue.substring(helpValue);
+                    actualValue = actualValue.substring(0, helpValue) + "Math.sqrt(" + helpString;
+                }
             }
         }
         else {
@@ -370,6 +447,7 @@ public class AdvancedActivity extends AppCompatActivity {
     }
 
     public void powClick(View view) {
+        boolean symbol = false;
         if(specialMode == false) {
             if(actualValue.length() == 0) {
                 specialMode = true;
@@ -394,12 +472,19 @@ public class AdvancedActivity extends AppCompatActivity {
                             || actualPrintValue.charAt(i) == '*'
                             || actualPrintValue.charAt(i) == '/') {
                         helpValue = i;
+                        symbol = true;
                         break;
                     }
                 }
                 String helpString = "";
-                helpString = actualPrintValue.substring(helpValue + 1);
-                actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "pow(" + helpString;
+                if(symbol) {
+                    helpString = actualPrintValue.substring(helpValue + 1);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "pow(" + helpString;
+                }
+                else {
+                    helpString = actualPrintValue.substring(helpValue);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue) + "pow(" + helpString;
+                }
                 setActualValue(actualPrintValue);
                 for(int i = actualValue.length() - 1; i > 0; i--) {
                     if(        actualValue.charAt(i) == '+'
@@ -407,11 +492,18 @@ public class AdvancedActivity extends AppCompatActivity {
                             || actualValue.charAt(i) == '*'
                             || actualValue.charAt(i) == '/') {
                         helpValue = i;
+                        symbol = true;
                         break;
                     }
                 }
-                helpString = actualValue.substring(helpValue + 1);
-                actualValue = actualValue.substring(0, helpValue + 1) + "Math.pow(" + helpString;
+                if(symbol) {
+                    helpString = actualValue.substring(helpValue + 1);
+                    actualValue = actualValue.substring(0, helpValue + 1) + "Math.pow(" + helpString;
+                }
+                else {
+                    helpString = actualValue.substring(helpValue);
+                    actualValue = actualValue.substring(0, helpValue) + "Math.pow(" + helpString;
+                }
             }
         }
         else {
@@ -423,6 +515,7 @@ public class AdvancedActivity extends AppCompatActivity {
     }
 
     public void pow2Click(View view) {
+        boolean symbol = false;
         if(powType == true) {
             powType = false;
             actualValue += ")";
@@ -452,12 +545,19 @@ public class AdvancedActivity extends AppCompatActivity {
                             || actualPrintValue.charAt(i) == '*'
                             || actualPrintValue.charAt(i) == '/') {
                         helpValue = i;
+                        symbol = true;
                         break;
                     }
                 }
                 String helpString = "";
-                helpString = actualPrintValue.substring(helpValue + 1);
-                actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "pow(" + helpString;
+                if(symbol) {
+                    helpString = actualPrintValue.substring(helpValue + 1);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "pow(" + helpString;
+                }
+                else {
+                    helpString = actualPrintValue.substring(helpValue);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue) + "pow(" + helpString;
+                }
                 setActualValue(actualPrintValue);
                 for(int i = actualValue.length() - 1; i > 0; i--) {
                     if(        actualValue.charAt(i) == '+'
@@ -465,11 +565,18 @@ public class AdvancedActivity extends AppCompatActivity {
                             || actualValue.charAt(i) == '*'
                             || actualValue.charAt(i) == '/') {
                         helpValue = i;
+                        symbol = true;
                         break;
                     }
                 }
-                helpString = actualValue.substring(helpValue + 1);
-                actualValue = actualValue.substring(0, helpValue + 1) + "Math.pow(" + helpString;
+                if(symbol) {
+                    helpString = actualValue.substring(helpValue + 1);
+                    actualValue = actualValue.substring(0, helpValue + 1) + "Math.pow(" + helpString;
+                }
+                else {
+                    helpString = actualValue.substring(helpValue);
+                    actualValue = actualValue.substring(0, helpValue) + "Math.pow(" + helpString;
+                }
             }
         }
         else {
@@ -482,6 +589,7 @@ public class AdvancedActivity extends AppCompatActivity {
     }
 
     public void logClick(View view) {
+        boolean symbol = false;
         if(specialMode == false) {
             if(actualValue.length() == 0) {
                 specialMode = true;
@@ -509,8 +617,14 @@ public class AdvancedActivity extends AppCompatActivity {
                     }
                 }
                 String helpString = "";
-                helpString = actualPrintValue.substring(helpValue + 1);
-                actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "log(" + helpString;
+                if(symbol) {
+                    helpString = actualPrintValue.substring(helpValue + 1);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue + 1) + "log(" + helpString;
+                }
+                else {
+                    helpString = actualPrintValue.substring(helpValue);
+                    actualPrintValue = actualPrintValue.substring(0, helpValue) + "log(" + helpString;
+                }
                 setActualValue(actualPrintValue);
                 for(int i = actualValue.length() - 1; i > 0; i--) {
                     if(        actualValue.charAt(i) == '+'
@@ -521,8 +635,14 @@ public class AdvancedActivity extends AppCompatActivity {
                         break;
                     }
                 }
-                helpString = actualValue.substring(helpValue + 1);
-                actualValue = actualValue.substring(0, helpValue + 1) + "Math.log(" + helpString;
+                if(symbol) {
+                    helpString = actualValue.substring(helpValue + 1);
+                    actualValue = actualValue.substring(0, helpValue + 1) + "Math.log(" + helpString;
+                }
+                else {
+                    helpString = actualValue.substring(helpValue);
+                    actualValue = actualValue.substring(0, helpValue) + "Math.log(" + helpString;
+                }
             }
         }
         else {
@@ -555,7 +675,8 @@ public class AdvancedActivity extends AppCompatActivity {
         if(        actualValue.charAt(actualValue.length() - 1) != '-'
                 && actualValue.charAt(actualValue.length() - 1) != '+'
                 && actualValue.charAt(actualValue.length() - 1) != '*'
-                && actualValue.charAt(actualValue.length() - 1) != '/') {
+                && actualValue.charAt(actualValue.length() - 1) != '/'
+                && actualValue.charAt(actualValue.length() - 1) != '(') {
             actualValue += "/";
             actualPrintValue += "/";
         }
@@ -588,7 +709,8 @@ public class AdvancedActivity extends AppCompatActivity {
         if(        actualValue.charAt(actualValue.length() - 1) != '-'
                 && actualValue.charAt(actualValue.length() - 1) != '+'
                 && actualValue.charAt(actualValue.length() - 1) != '*'
-                && actualValue.charAt(actualValue.length() - 1) != '/') {
+                && actualValue.charAt(actualValue.length() - 1) != '/'
+                && actualValue.charAt(actualValue.length() - 1) != '(') {
             actualValue += "*";
             actualPrintValue += "*";
         }
@@ -651,7 +773,9 @@ public class AdvancedActivity extends AppCompatActivity {
                 && actualValue.charAt(actualValue.length() - 1) != '+'
                 && actualValue.charAt(actualValue.length() - 1) != '-'
                 && actualValue.charAt(actualValue.length() - 1) != '*'
-                && actualValue.charAt(actualValue.length() - 1) != '/') {
+                && actualValue.charAt(actualValue.length() - 1) != '/'
+                && actualValue.charAt(actualValue.length() - 1) != ')'
+                && actualValue.charAt(actualValue.length() - 1) != '(') {
         }
         else return;
         for(int i = actualValue.length() - 1; i > 0; i--) {
@@ -724,8 +848,6 @@ public class AdvancedActivity extends AppCompatActivity {
             }
         }
 
-
-        System.out.println("4");
         if(        actualValue.charAt(actualValue.length() - 1) == '.'
                 || actualValue.charAt(actualValue.length() - 1) == '+'
                 || actualValue.charAt(actualValue.length() - 1) == '-'
@@ -748,7 +870,6 @@ public class AdvancedActivity extends AppCompatActivity {
             if(actualValue.charAt(i) == '.') helpBool = true;
         }
 
-        System.out.println(helpValue);
         if(helpValue > 6) actualValue = actualValue.substring(0, actualValue.length() - 2);
 
         actualPrintValue = actualValue;
